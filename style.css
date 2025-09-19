@@ -1,0 +1,82 @@
+:root {
+    --bg-color: #020617;
+    --text-color: #e0e7ff;
+    --text-secondary: #93a2c4;
+    --accent-glow: #2dd4bf;
+    --accent-warm: #facc15;
+    --card-bg: rgba(12, 15, 29, 0.6);
+    --border-color: rgba(45, 212, 191, 0.2);
+    --glow-color: rgba(45, 212, 191, 0.15);
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+#background-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5;
+}
+.main-container {
+    position: relative; z-index: 1; background: var(--card-bg); border: 1px solid var(--border-color);
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 0 80px rgba(0,0,0,0.7), inset 0 0 25px var(--glow-color);
+}
+.font-cinzel { font-family: 'Cinzel', serif; }
+
+/* Accordion Styles */
+.accordion-item { border-bottom: 1px solid var(--border-color); }
+.accordion-button {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
+    padding: 1.25rem 0.5rem; text-align: left; background: transparent; border: none;
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.5rem; color: var(--accent-warm);
+    cursor: pointer; transition: color 0.3s ease;
+}
+.accordion-button:hover { color: #fde047; }
+.accordion-icon {
+    transition: transform 0.3s ease-in-out; font-size: 1.5rem; color: var(--accent-glow);
+}
+.accordion-content {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out;
+}
+.accordion-content p {
+    font-weight: 300; font-size: 1.1rem; line-height: 1.9; padding: 0.5rem 0.5rem 1.5rem;
+    white-space: pre-wrap; word-wrap: break-word;
+}
+.accordion-content.open { max-height: 1000px; }
+.accordion-button .accordion-icon.open { transform: rotate(45deg); }
+
+/* Dialogue/Chat Styles */
+#dialogue-history {
+    height: 300px; overflow-y: auto; padding: 1rem;
+    background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.dialogue-entry { margin-bottom: 1rem; }
+.dialogue-role {
+    font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem;
+    font-family: 'Cinzel', serif; letter-spacing: 0.05em;
+}
+.dialogue-user .dialogue-role { color: var(--accent-glow); text-align: right; }
+.dialogue-oneironaut .dialogue-role { color: var(--accent-warm); }
+.dialogue-text {
+    padding: 0.75rem 1rem; border-radius: 0.5rem; line-height: 1.6;
+}
+.dialogue-user .dialogue-text {
+    background: rgba(45, 212, 191, 0.1); border: 1px solid rgba(45, 212, 191, 0.2);
+}
+.dialogue-oneironaut .dialogue-text {
+    background: rgba(250, 204, 21, 0.05); border: 1px solid rgba(250, 204, 21, 0.15);
+}
+
+.action-button {
+    background: linear-gradient(45deg, var(--accent-glow), #2dd4bf); color: var(--bg-color);
+    font-family: 'Cinzel', serif; box-shadow: 0 0 25px var(--glow-color);
+    transition: all 0.3s ease; letter-spacing: 0.1em;
+}
+.action-button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 5px 35px var(--glow-color); }
+.action-button:disabled { background: var(--text-secondary); cursor: not-allowed; box-shadow: none; transform: none; }
+.custom-scrollbar::-webkit-scrollbar { width: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 8px; }
+
