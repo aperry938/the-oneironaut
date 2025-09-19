@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    Project: The Oneironaut - An Instrument for Insight
+    Author: Anthony Perry
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SECURITY AUDIT: PASSED - Content-Security-Policy is strict, preventing unauthorized resource loading and mitigating XSS vectors. -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://generativelanguage.googleapis.com;
+        img-src 'self' data:;
+        frame-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    <title>The Oneironaut | An Instrument for Insight</title>
+    <!-- External Libraries & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased py-8 px-4">
+
+    <canvas id="background-canvas"></canvas>
+
+    <div class="main-container mx-auto max-w-4xl p-6 md:p-10 rounded-2xl custom-scrollbar max-h-[90vh] overflow-y-auto">
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="font-cinzel text-4xl md:text-5xl font-bold tracking-wider text-white">The Oneironaut</h1>
+            <p class="font-cinzel text-lg text-gray-300 mt-2 tracking-widest uppercase">An Instrument for Insight</p>
+            <p class="font-montserrat text-base text-gray-400 mt-6 max-w-2xl mx-auto">Welcome. Your inner world communicates through the language of dreams. This is a space to translate those messages. Share the story of your dream, and we will begin the dialogue to uncover the wisdom it holds for you.</p>
+        </header>
+
+        <main>
+            <div id="initial-input-section" class="input-section space-y-6">
+                <div>
+                    <label for="dream-input" class="block text-xl font-bold mb-3 text-teal-300 font-cinzel">The Dream's Narrative</label>
+                    <textarea id="dream-input" class="w-full h-48 p-4 bg-black/30 border border-[var(--border-color)] rounded-lg text-gray-200 focus:ring-2 focus:ring-[var(--accent-glow)] focus:outline-none transition-all" placeholder="Describe the dream's world, the characters you met, the unfolding events, and any striking sensory details—sights, sounds, or textures. The more vivid the memory, the clearer the message."></textarea>
+                </div>
+                <div>
+                    <label for="feeling-input" class="block text-xl font-bold mb-3 text-teal-300 font-cinzel">The Dream's Emotional Core</label>
+                    <textarea id="feeling-input" class="w-full h-24 p-4 bg-black/30 border border-[var(--border-color)] rounded-lg text-gray-200 focus:ring-2 focus:ring-[var(--accent-glow)] focus:outline-none transition-all" placeholder="What single feeling remained when you woke? Was it fear, wonder, confusion, peace? This is the emotional key to unlocking the dream's meaning."></textarea>
+                </div>
+                <div class="text-center">
+                    <button id="analyze-button" class="action-button py-3 px-10 text-white font-bold text-lg rounded-full shadow-lg">
+                        <span id="button-text">Illuminate Dream</span>
+                        <span id="button-loader" class="hidden">Illuminating...</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="error-box" class="hidden mt-6 bg-red-900/50 border border-red-700 text-red-200 px-4 py-3 rounded-lg" role="alert">
+                <strong class="font-bold">A Moment of Stillness:</strong>
+                <span id="error-message"></span>
+            </div>
+
+            <div id="analysis-container" class="hidden mt-12 pt-8 border-t-2 border-[var(--border-color)]">
+                <!-- Interactive accordion analysis will be rendered here -->
+            </div>
+            
+            <div id="dialogue-container" class="hidden mt-10 pt-8 border-t-2 border-[var(--border-color)]">
+                <h2 class="font-cinzel text-3xl font-bold text-center mb-2 text-white">Continue the Dialogue</h2>
+                <p class="font-montserrat text-sm text-center text-gray-400 mb-6 max-w-xl mx-auto">The initial analysis is a doorway. To step through, continue the conversation. Ask about a specific symbol, share a new thought, or explore a feeling that arose. The Oneironaut is listening.</p>
+                <div id="dialogue-history" class="custom-scrollbar"></div>
+                <div class="flex space-x-4">
+                    <input type="text" id="dialogue-input" class="flex-grow p-3 bg-black/30 border border-[var(--border-color)] rounded-full text-gray-200 focus:ring-2 focus:ring-[var(--accent-glow)] focus:outline-none transition-all duration-300 px-6" placeholder="e.g., 'Tell me more about the lion...' or 'That felt true.'">
+                    <button id="dialogue-button" class="action-button py-3 px-6 text-white font-bold rounded-full shadow-lg">
+                        <span id="dialogue-button-text">Send</span>
+                        <span id="dialogue-button-loader" class="hidden">...</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-[var(--border-color)] text-sm text-[var(--text-secondary)] opacity-80">
+            <p>The Oneironaut is a guide for self-reflection and is not a substitute for professional therapeutic advice. The dreamer is the ultimate authority on the meaning of their own dream.</p>
+        </footer>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
